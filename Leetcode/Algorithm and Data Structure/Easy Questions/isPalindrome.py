@@ -4,12 +4,16 @@ def isPalindrome(s):
 
     # Loop to get only the alphanumeric characters (No punctuations)
     while left < right:
-        while left < right and not s[left].isalnum(): # Check the left side if it's alphanumeric, if not increment by 1 on the left side
+        while (
+            left < right and not s[left].isalnum()
+        ):  # Check the left side if it's alphanumeric, if not increment by 1 on the left side
             left += 1
-        while left < right and not s[right].isalnum(): # Check the right side if it's alphanumeric, if not increment by 1 on the right side
+        while (
+            left < right and not s[right].isalnum()
+        ):  # Check the right side if it's alphanumeric, if not increment by 1 on the right side
             right -= 1
 
-        if s[left]!= s[right]:
+        if s[left] != s[right]:
             return False
 
         left += 1

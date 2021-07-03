@@ -1,5 +1,5 @@
 def twoSum(nums, target):
-    prevMap = {} # val : index
+    prevMap = {}  # val : index
 
     for i, n in enumerate(nums):
         diff = target - n
@@ -7,6 +7,7 @@ def twoSum(nums, target):
             return [prevMap[diff], i]
         prevMap[n] = i
 
-nums = [3,2,4]
+
+nums = [3, 2, 4]
 target = 6
-print(twoSum(nums,target))
+print(twoSum(nums, target))

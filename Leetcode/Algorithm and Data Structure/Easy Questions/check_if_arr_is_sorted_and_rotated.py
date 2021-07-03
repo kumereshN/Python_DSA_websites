@@ -16,9 +16,10 @@ Time O(n)
 Space O(1)
 """
 
+
 def check(self, A):
-    return sum(nums[i] < nums[i-1] for i in range(len(nums))) <= 1
+    return sum(nums[i] < nums[i - 1] for i in range(len(nums))) <= 1
 
 
-nums = [3,4,5,1,2]
+nums = [3, 4, 5, 1, 2]
 check(nums)

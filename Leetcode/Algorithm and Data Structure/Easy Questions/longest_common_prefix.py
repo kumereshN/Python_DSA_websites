@@ -16,32 +16,33 @@ class Solution:
 
 # Alternative solution
 def longestCommonPrefix(strs):
-        if not strs:
-            return ""
+    if not strs:
+        return ""
 
-        prefix = ""
-        for i in range(min(map(len, strs))):
-            ch = strs[0][i]
-            if all(s[i] == ch for s in strs):
-                prefix += ch
-            else:
-                break
-        return prefix
+    prefix = ""
+    for i in range(min(map(len, strs))):
+        ch = strs[0][i]
+        if all(s[i] == ch for s in strs):
+            prefix += ch
+        else:
+            break
+    return prefix
 
-strs = ["flower","flow","flight"]
+
+strs = ["flower", "flow", "flight"]
 longestCommonPrefix(strs)
 
 
 # Alternative solution
 def longestCommonPrefix(strs):
-    res, i, j = '', 0, 0
+    res, i, j = "", 0, 0
     try:
         while True:
             if i == len(strs) - 1:
                 res += strs[0][j]
                 i = 0
                 j += 1
-            if strs[i][j] == strs[i+1][j]:
+            if strs[i][j] == strs[i + 1][j]:
                 i += 1
             else:
                 return res

@@ -1,12 +1,13 @@
 def findKthPositive(arr, k):
     for idx, num in enumerate(arr):
-        if num > idx + k: # For each number in the array, check if the num > idx + k
+        if num > idx + k:  # For each number in the array, check if the num > idx + k
             return idx + k
-    return len(arr) + k # If there are no missing numbers in the array, then get the length of the array + k
+    return len(arr) + k  # If there are no missing numbers in the array, then get the length of the array + k
 
-arr = [2,3,4,7,11]
+
+arr = [2, 3, 4, 7, 11]
 k = 5
-findKthPositive(arr,k)
+findKthPositive(arr, k)
 
 """
 Explanation:
@@ -34,11 +35,13 @@ def findKthPositive(arr, k):
     while lo <= hi:
         mid = (hi + lo) // 2
         missing = arr[mid] - (mid + 1)  # ideally, arr[i] should hold i + 1 value i.e arr[0] = 1, arr[1] = 2..etc
-        if missing >= k: # If the missing number is more than or equal to k
-            hi = mid - 1 # Then the missing kth number must be on the left side
+        if missing >= k:  # If the missing number is more than or equal to k
+            hi = mid - 1  # Then the missing kth number must be on the left side
         else:
             lo = mid + 1
-    return hi + k + 1 # Goes to the 3rd index of [2,3,4,7,11] which is 7 + kth index which is 5 + 1 = 9 the missing number
+    return (
+        hi + k + 1
+    )  # Goes to the 3rd index of [2,3,4,7,11] which is 7 + kth index which is 5 + 1 = 9 the missing number
 
 
 """
