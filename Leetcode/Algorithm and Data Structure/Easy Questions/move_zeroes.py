@@ -25,6 +25,7 @@ def moveZeroes(nums):
             )  # Swap the number of index c, which is 0, with the number of index i with a non-zero number.
             c += 1  # Increment by 1 as it's swapped.
     return nums
+    # print(nums)
 
 
 moveZeroes([0, 1, 0, 3, 12])
