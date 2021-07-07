@@ -8,13 +8,16 @@ def rob(nums):
     rob_next = nums[n - 1]
 
     for i in range(n - 2, -1, -1):
-        current = max(rob_next, rob_next_plus_one + nums[i]) # Either don't rob the current house OR rob the current house and move TWO steps ahead for the next house.
+        current = max(
+            rob_next, rob_next_plus_one + nums[i]
+        )  # Either don't rob the current house OR rob the current house and move TWO steps ahead for the next house.
 
         rob_next_plus_one = rob_next
         rob_next = current
     return rob_next
 
-nums = [1,2,3,1]
+
+nums = [1, 2, 3, 1]
 rob(nums)
 
 
@@ -33,8 +36,11 @@ class Solution:
     def rob(self, nums):
         max_3_house_before, max_2_house_before, adjacent = 0, 0, 0
         for cur in nums:
-            max_3_house_before, max_2_house_before, adjacent = \
-            max_2_house_before, adjacent, max(max_3_house_before+cur, max_2_house_before+cur)
+            max_3_house_before, max_2_house_before, adjacent = (
+                max_2_house_before,
+                adjacent,
+                max(max_3_house_before + cur, max_2_house_before + cur),
+            )
         return max(max_2_house_before, adjacent)
 
 
@@ -45,7 +51,19 @@ The idea is to the store the max sum we can get for each house and use it to cal
 
 In the path that the robber chose to rob with max money, it is guaranteed that either the last house (num[-1]) or the 2nd last house (num[-2]) will be robbed. So we can compare the max sum path that includes num[-1] with the max sum path that includes num[-2] and return the larger one.
 
-To get the sums of the two paths, we scan from left to right. A sliding window of size 4, [max_3_house_before, max_2_house_before, adjacent, cur], is used to calculate the max sum till the current house. The last element, cur, of the window is the money of the current house we are scanning. The 1st element, max_3_house_before, stores the max sum till the house that is 3 steps before the current one. The 2nd element, max_2_house_before, stores the max sum till the house that is 2 steps before the current one. The 3rd element, adjacent, stores the max sum till the house that are one step before the current one. To reach the current house, we either came from the house that is 3 steps before or from the one that is 2 steps before because visiting two adjacent houses is not allowed. So we can get the max sum till the current house by max(cur+max_3_house_before, cur+max_2_house_before).
+To get the sums of the two paths, we scan from left to right. A sliding window of size 4, [max_3_house_before, max_2_house_before, adjacent, cur], is used to calculate the max sum till the current house.
+
+The last element, cur, of the window is the money of the current house we are scanning.
+
+The 1st element, max_3_house_before, stores the max sum till the house that is 3 steps before the current one.
+
+The 2nd element, max_2_house_before, stores the max sum till the house that is 2 steps before the current one.
+
+The 3rd element, adjacent, stores the max sum till the house that are one step before the current one.
+
+To reach the current house, we either came from the house that is 3 steps before or from the one that is 2 steps before because visiting two adjacent houses is not allowed.
+
+So we can get the max sum till the current house by max(cur+max_3_house_before, cur+max_2_house_before).
 
 Before scanning the next house we update the window by moving one house forward: max_3_house_before, max_2_house_before, adjacent = max_2_house_before, adjacent, max(max_3_house_before+cur, max_2_house_before+cur).
 
