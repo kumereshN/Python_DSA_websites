@@ -71,6 +71,9 @@ When we finished the scanning, the max sum exists in either max_2_house_before o
 
 For example: num = [1,7,9,4], at the beginning, max_3_house_before, max_2_house_before, adjacent are initialized to 0, so it is like putting 3 zeros before the input list [0, 0, 0, 1, 7, 9, 4]. Here are steps for calculating the max sum for each house(the sliding window is marked by parentheses):
 
+My Notes:
+In the sliding windows (marked by the parenthese), max(last number (cur) + first number (max_3_house_before), last number (cur) + second number (max_2_house_before))
+
 [(0, 0, 0, 1), 7, 9, 4], cur = max(0+1, 0+1)
 
 -> [ (0, 0, 1, 7), 9, 4], cur = max(0+7, 0+7)

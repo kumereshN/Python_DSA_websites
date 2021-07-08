@@ -1,0 +1,2 @@
+2021-07-04 13:11:21,078 - DEBUG - This is a log message.
+2021-07-04 13:14:25,319 - DEBUG - Hello.
