@@ -1,20 +1,25 @@
 # More pythonic version
 from collections import defaultdict
+
+
 def subarraySum(nums, k):
     count = totalSum = 0
     running_sum = defaultdict(int)
-    running_sum[0] = 1
+    running_sum[0] = 1  # initialise 0
 
     for n in nums:
         totalSum += n
-        count += running_sum[totalSum-k] # We found a subarray of sums = k, so count += running_sum[sum-k]
-        running_sum[totalSum] += 1 # Just like twoSums. number:count
+        count += running_sum[
+            totalSum - k
+        ]  # We found a subarray of sums = k, so count += running_sum[sum-k]
+        running_sum[totalSum] += 1  # Just like twoSums. number:count
 
     return count
 
-nums = [1,1,1]
+
+nums = [1, 1, 1]
 k = 2
-subarraySum(nums,k)
+subarraySum(nums, k)
 
 
 """
@@ -54,7 +59,7 @@ class Solution(object):
 
         for i in range(len(nums)):
             sums += nums[i]
-            count += d.get(sums-k,0)
-            d[sums] = d.get(sums,0) + 1
+            count += d.get(sums - k, 0)
+            d[sums] = d.get(sums, 0) + 1
 
-        return(count)
+        return count
