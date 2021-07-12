@@ -78,9 +78,9 @@ In the sliding windows (marked by the parenthese), max(last number (cur) + first
 
 -> [ (0, 0, 1, 7), 9, 4], cur = max(0+7, 0+7)
 
--> [(0, 1, 7, 9), 4], cur = max(0+9, 1+9)
+-> [(0, 1, 7, 9), 4], cur = max(0+9, 1+9) # Cur becomes 10
 
--> [(1, 7, 10, 4)], cur = max(1+4, 7+4)
+-> [(1, 7, 10, 4)], cur = max(1+4, 7+4) # Cur becomes 11
 
 -> [7, 10, 11], 10 is the max sum of path that includes num[-2], 11 is the max sum of path that includes num[-1], so return max(10, 11)
 
