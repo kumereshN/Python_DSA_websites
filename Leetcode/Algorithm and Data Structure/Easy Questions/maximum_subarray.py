@@ -31,6 +31,7 @@ def maxSubArray(nums):
     curSum = 0
 
     for n in nums:
+        # If the current sum is less than 0, then reset the current sum. Only want positive sum.
         if curSum < 0:
             curSum = 0
         curSum += n
