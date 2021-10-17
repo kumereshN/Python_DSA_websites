@@ -5,7 +5,7 @@ class Solution:
         # slow remains the same as head, only fast is being iterated
         for _ in range(n):
             fast = fast.next
-        # If reach the end return the next list
+        # If reach the end return the next head
         if not fast:
             return head.next
         # Iterate the list until fast reaches the end
