@@ -11,6 +11,7 @@ def lengthOfLongestSubstring(s):
         # If the character exists in the hash map, which is the repeating character.
         if s[j] in mp:
             # Compare the index of the repeating character in the hash map against the index i and set the maximum value for i.
+            # i is the anchor for the repeating char which starts from the beginning of the string.
             i = max(mp[s[j]], i)
 
         # Gets the maximum between ans and j - i + 1, which is the length of the string
