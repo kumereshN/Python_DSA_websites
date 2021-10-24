@@ -30,6 +30,8 @@ For second loop:
 """
 
 # Alternative Solution
+
+
 class Solution:
     # @param num, a list of integer
     # @return an integer
@@ -85,4 +87,49 @@ In the sliding windows (marked by the parenthese), max(last number (cur) + first
 -> [7, 10, 11], 10 is the max sum of path that includes num[-2], 11 is the max sum of path that includes num[-1], so return max(10, 11)
 
 Source: https://leetcode.com/problems/house-robber/discuss/55977/Python-DP-solution-4-line-O(n)-time-O(1)-space-easy-to-understand-with-detailed-explanation
+"""
+
+
+def rob(self, nums):
+    last, now = 0, 0
+    for i in nums:
+        last, now = now, max(last + i, now)
+    return now
+
+
+# source: https://leetcode.com/problems/house-robber/discuss/55696/Python-solution-3-lines.
+
+"""
+For anyone who still needs help understanding the coding logic, it's actually pretty straightforward than it looks.
+The only key idea we have to understand is that we want to store previous values (very much similar to if we were swapping two variables).
+Here is a much more simplified version of the logic with comments. Let me know if it helps!
+"""
+
+
+""" 
+class Solution(object):
+  def rob(self, nums):
+    # Base Case: nums[0] = nums[0]
+    # nums[1] = max(nums[0], nums[1])
+    # nums[k] = max(k + nums[k-2], nums[k-1])
+    '''
+    # Approach 1:- Construct dp table
+    if not nums: return 0
+    if len(nums) == 1: return nums[0]
+    
+    dp = [0] * len(nums)
+    dp[0] = nums[0]
+    dp[1] = max(nums[0], nums[1])
+    for i in range(2, len(nums)):
+      dp[i] = max(nums[i] + dp[i-2], dp[i-1])
+    return dp[-1] # return the last element
+    '''
+    
+    # Approach 2:- Constant space use two variables and compute the max respectively
+    prev = curr = 0
+    for num in nums:
+      temp = prev # This represents the nums[i-2]th value
+      prev = curr # This represents the nums[i-1]th value
+      curr = max(num + temp, prev) # Here we just plug into the formula
+    return curr
 """

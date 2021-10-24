@@ -16,6 +16,7 @@ def lengthOfLongestSubstring(s):
 
         # Gets the maximum between ans and j - i + 1, which is the length of the string
         ans = max(ans, j - i + 1)
+        # j + 1 to keep track of the index of the character
         mp[s[j]] = j + 1
 
     return ans
