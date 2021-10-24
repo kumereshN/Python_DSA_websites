@@ -90,10 +90,11 @@ Source: https://leetcode.com/problems/house-robber/discuss/55977/Python-DP-solut
 """
 
 
-def rob(self, nums):
+def rob(nums):
     last, now = 0, 0
-    for i in nums:
-        last, now = now, max(last + i, now)
+    for n in nums:
+        # last = now, but it does not immediately reflect in max(last + n, now). It makes use of the current last variable.
+        last, now = now, max(last + n, now)
     return now
 
 
