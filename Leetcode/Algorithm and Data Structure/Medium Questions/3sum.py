@@ -26,7 +26,8 @@ class Solution:
         res = []
         nums.sort()
         for i in range(len(nums)):
-            if nums[i] > 0:  # It has to be a positive number, if not the remaining numbers cannot sum to 0
+            # It has to be a negative number, if not the remaining numbers cannot sum to 0. If it's a positive number, break out of the loop.
+            if nums[i] > 0:
                 break
             # if it's either the starting number or the previous number is not a duplicate of the current number
             if i == 0 or nums[i - 1] != nums[i]:
@@ -99,18 +100,36 @@ def threeSum(nums):
 nums = [-1, 0, 1, 2, -1, -4]
 threeSum(nums)
 
-# My Solution
-target = 0
-lst = []
-nums.sort()
 
-if len(nums) < 3:
-    return []
-elif all(num == 0 for num in nums):
-    return [[0, 0, 0]]
+# For python tutor
+class Solution:
+    def threeSum(self, nums):
+        res = []
+        nums.sort()
 
-for i in range(1, len(nums)):
-    diff = target - nums[i-1] - nums[i]
-    if diff in nums[i:]:
-        lst.append([nums[i], nums[i-1], diff])
-return lst
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                break
+            if i == 0 or nums[i-1] != nums[i]:
+                self.twoSums(i, res, nums)
+        return res
+
+    def twoSums(self, i, res, nums):
+        left, right = i+1, len(nums)-1
+        while left < right:
+            totalSum = nums[i] + nums[left] + nums[right]
+            if totalSum < 0:
+                left += 1
+            elif totalSum > 0:
+                right -= 1
+            else:
+                res.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+                while left < right and nums[left] == nums[left-1]:
+                    left += 1
+
+
+nums = [-1, 0, 1, 2, -1, -4]
+s = Solution()
+s.threeSum(nums)
