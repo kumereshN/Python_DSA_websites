@@ -9,6 +9,7 @@ def permutations(l):
         # Base case
         if len(permutation) == len(l):
             res.append(list(permutation))
+            # Exit out of the recursion
             return
 
         for letter in l:
