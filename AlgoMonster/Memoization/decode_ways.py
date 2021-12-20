@@ -11,6 +11,7 @@ def decode_ways(digits: str) -> int:
 
         ways = 0
         remaining = digits[i:]
+
         for prefix in prefixes:
             if remaining.startswith(prefix):
                 # len(prefix) is always 1, so increment i by 1
