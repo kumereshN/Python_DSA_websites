@@ -2,10 +2,11 @@ from typing import List
 
 
 def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
-    def dfs(nums, start_index, remaining, path):
+    def dfs(start_index, nums, remaining, path):
         if remaining == 0:
             res.append(path[:])
             return
+        # start_index is to keep track of the index moving, if not it'll reset to 0 everytime it does dfs
         for i in range(start_index, len(nums)):
             num = nums[i]
             # If remaining - num is less than 0, we prune the branch
@@ -13,5 +14,5 @@ def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
                 continue
             dfs(nums, i, remaining - num, path + [num])
     res = []
-    dfs(candidates, 0, target, [])
+    dfs(0, candidates, target, [])
     return res
