@@ -21,7 +21,7 @@ def partition(s):
         for i in range(start+1, n+1):
             # Obtaining the prefix
             prefix = s[start:i]
-            # Only continue if the substring is a palindrome
+            # Only continue if the substring is a palindrome (This is call pruning the state space branches)
             if is_palindrome(prefix):
                 # If it's a palindrome, added it to the cur_path list
                 dfs(i, cur_path + [prefix])
