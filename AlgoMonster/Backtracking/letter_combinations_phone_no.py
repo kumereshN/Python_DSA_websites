@@ -16,7 +16,7 @@ def letter_combinations_of_phone_number(digits: str) -> List[str]:
 
     res = []
 
-    def dfs(path, res):
+    def dfs(path):
         # Base case
         if len(path) == len(digits):
             res.append(''.join(path))
@@ -27,10 +27,10 @@ def letter_combinations_of_phone_number(digits: str) -> List[str]:
         # getting each letter from the string of letters
         for letter in KEYBOARD[next_number]:
             path.append(letter)
-            dfs(path, res)
+            dfs(path)
             path.pop()
 
-    dfs([], res)
+    dfs([])
     return res
 
 

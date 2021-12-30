@@ -18,6 +18,7 @@ def word_break(s, words):
                 # checks for the next word in the words list
                 # Does the recursion to check the above 2 base cases
                 if dfs(i + len(word)):
+                    # If all the words in the word list matches the string, then set the boolean value to be True
                     ok = True
                     # break out of the for loop
                     break

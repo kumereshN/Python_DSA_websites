@@ -15,6 +15,7 @@ def ternary_tree_paths(root: Node) -> List[str]:
     def dfs(root, path, res):
         # exit condition, reached leaf node, append paths to results
         if all(c is None for c in root.children):
+            # If it's the last node, join the path together with the leaf node value
             res.append('->'.join(path) + '->' + str(root.val))
             return
 
