@@ -5,6 +5,7 @@ def subsets(nums):
     # The path carries the state to the next recursion
     def dfs(i, path):
         # Base case: if the index is the len(nums), append the path to result
+        # it goes back to the previous stack, e.g: i = 3 then falls back to 2
         if i == len(nums):
             res.append(path)
             return
