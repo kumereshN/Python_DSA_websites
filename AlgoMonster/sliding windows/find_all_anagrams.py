@@ -1,5 +1,5 @@
 # word2 should be sorted already return sorted(word1) == word2
-def find_all_anagrams(original: str, check: str) -> List[int]:
+def find_all_anagrams(original: str, check: str):
     def isAnagram(word1, word2):
         # word2 should be sorted already
         return sorted(word1) == word2
