@@ -40,6 +40,11 @@ class Solution:
 
 
 def get_minimum_window(original: str, check: str) -> str:
+    """ 
+    First part: the right pointer keeps moving to the right until it finds all the chars in "need" matching a substring
+    Second part: Moves the left pointer to remove duplicate and unwanted chars in the substring
+
+    """
     # WRITE YOUR BRILLIANT CODE HERE
     need = Counter(check)  # hash table to store char frequency
     missing = len(check)  # total number of chars we care
@@ -55,7 +60,7 @@ def get_minimum_window(original: str, check: str) -> str:
         # Keep doing this until the substring matches all the characters in check
         if missing == 0:  # match all chars
             # Moves the left pointer to the right
-            # The need[s[left]] < 0 removes duplicate char and unwanted chars
+            # The need[original[left]] < 0 is done until the need set is no longer contained by the check
             # remove chars to find the real start
             while left < right and need[original[left]] < 0:
                 need[original[left]] += 1
@@ -69,7 +74,7 @@ def get_minimum_window(original: str, check: str) -> str:
                 # update the index of the minimum substring
                 start, end = left, right
                 res.append(original[start:end])
-            # Since we've found the minimum substring that matches check, we move the left pointer
+            # We move on to the next window, we move the left pointer
             left += 1  # update left to start+1 for next window
     res = sorted(res)
     return res[0] if res else ""
