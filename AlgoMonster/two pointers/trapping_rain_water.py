@@ -21,6 +21,8 @@ def trapping_rain_water(elevations):
     trapped_water = 0
 
     while l < r:
+        # The smaller of the elevations between left and right has to be found
+        # This is used to subtract the highest elevation of their respective side E.g: Highest elevation - Lowest elevation = trapped_water
         if elevations[l] < elevations[r]:
             maxl = max(maxl, elevations[l])
             trapped_water += maxl - elevations[l]
