@@ -17,8 +17,8 @@ def get_knight_shortest_path(x: int, y: int) -> int:
         visited = set()
         steps = 0
         queue = deque([start])
-        while len(queue) > 0:
-            n = len(queue)
+        n = len(queue)
+        while n > 0:
             for _ in range(n):
                 node = queue.popleft()
                 if node[0] == y and node[1] == x:
