@@ -6,16 +6,15 @@ def count_number_of_islands(grid: List[List[int]]) -> int:
     num_cols = len(grid[0])
 
     def get_neighbors(coord):
-        res = []
         row, col = coord
         delta_row = [-1, 0, 1, 0]
         delta_col = [0, 1, 0, -1]
+        
         for i in range(len(delta_row)):
             neighbor_row = row + delta_row[i]
             neighbor_col = col + delta_col[i]
             if 0 <= neighbor_row < num_rows and 0 <= neighbor_col < num_cols:
-                res.append((neighbor_row, neighbor_col))
-        return res
+                yield neighbor_row, neighbor_col
 
     def bfs(start):
         queue = deque([start])
