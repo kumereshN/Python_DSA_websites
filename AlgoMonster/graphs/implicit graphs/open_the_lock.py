@@ -6,7 +6,7 @@ def num_steps(combo: str, trapped_combos: List[str]) -> int:
     depth = -1
     visited, q = set(trapped_combos), deque(['0000'])
 
-    def successors(src):
+    def get_next_combos(src):
         res = []
         for i, ch in enumerate(src):
             num = int(ch)
@@ -28,7 +28,7 @@ def num_steps(combo: str, trapped_combos: List[str]) -> int:
             if node in visited:
                 continue
             visited.add(node)
-            q.extend(successors(node))
+            q.extend(get_next_combos(node))
     return -1
 
 

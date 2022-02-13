@@ -25,7 +25,7 @@ def flood_fill(r: int, c: int, replacement: int, image: List[List[int]]) -> List
         # We've visited the first one, so replace the color
         image[r][c] = replacement # replace root color
         visited[r][c] = True
-        while len(queue) > 0:
+        while queue:
             node = queue.popleft()
             # Output each neighbor_row and neighbor_col one by one instead of the entire thing because of yield
             for neighbor in get_neighbors(node, color):
