@@ -4,6 +4,7 @@ from typing import List
 def flood_fill(r: int, c: int, replacement: int, image: List[List[int]]) -> List[List[int]]:
     """ r,c is the row and column tells you where the number has to be replaced """
     num_rows, num_cols = len(image), len(image[0])
+    
     def get_neighbors(coord, color):
         row, col = coord
         delta_row = [-1, 0, 1, 0]
