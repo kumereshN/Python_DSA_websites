@@ -12,26 +12,27 @@ def num_steps(init_pos: List[List[int]]) -> int:
     s = "".join(str(c) for row in init_pos for c in row)
     # ('413205', 4) 
     # 4 is the index of "0"
-    # start from 0
-    q = [(s, s.index("0"))]
-    while q:
+    # start from 0 as it's the empty space in which you can move
+    queue = [(s, s.index("0"))]
+    while queue:
         # If the string has not been seen before in used, append the string to new
-        # This will later be used for the new q
+        # This will later be used for the new queue
         new = []
-        for s, i in q:
-            used.add(s)
-            if s == "123450":
+        for num, idx in queue:
+            used.add(num)
+            if num == "123450":
                 return cnt
-            arr = [c for c in s]
-            for move in moves[i]:
+            arr = [c for c in num]
+            for move in moves[idx]:
+                # Making a copy of the array to avoid mutation
                 new_arr = arr[:]
                 # Possible outcomes from swapping "0" between the adjacent indexes
-                new_arr[i], new_arr[move] = new_arr[move], new_arr[i]
+                new_arr[idx], new_arr[move] = new_arr[move], new_arr[idx]
                 new_s = "".join(new_arr)
                 if new_s not in used:
                     new.append((new_s, move))
         cnt += 1
-        q = new
+        queue = new
     return -1
 
 grid = [[4,1,3],
