@@ -10,6 +10,8 @@ def feasible(weights: List[int], max_weight: int, d: int) -> int:
             capacity -= weights[i]
             i += 1
         else:
+            # If we've reached the max capacity, increment req_days by 1
+            # Reset the capacity
             req_days += 1
             capacity = max_weight
     return req_days <= d
