@@ -1,18 +1,18 @@
 from typing import List
 
-def feasible(newspapers: List[int], max_time: int, coworkers: int) -> bool:
+def feasible(newspapers: List[int], init_time: int, coworkers: int) -> bool:
     """ Same as capacity to ship packages problem """
     i = 0
     n = len(newspapers)
-    total_time = max_time
+    read_time = init_time
     req_coworkers = 1
     
     while i < n:
-        if newspapers[i] <= total_time:
-            total_time -= newspapers[i]
+        if newspapers[i] <= read_time:
+            read_time -= newspapers[i]
             i += 1
         else:
-            total_time = max_time
+            read_time = init_time
             req_coworkers += 1
     return req_coworkers <= coworkers
 
