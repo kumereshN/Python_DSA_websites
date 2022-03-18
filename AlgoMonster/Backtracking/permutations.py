@@ -38,6 +38,11 @@ Algo monster solution
 from typing import List
 
 def permutations(letters):
+    """
+    There are 2 things to note here:
+    the path is a list that keeps getting updated inside the dfs function
+    the res is a list that outputs all the permuatations
+    """
     def dfs(path, used, res):
         if len(path) == len(letters):
             res.append(''.join(path))
