@@ -37,31 +37,29 @@ Algo monster solution
 
 from typing import List
 
-def permutations(letters):
+def permutations(l):
     """
     There are 2 things to note here:
     the path is a list that keeps getting updated inside the dfs function
     the res is a list that outputs all the permuatations
     """
-    def dfs(path, used, res):
-        if len(path) == len(letters):
+    def dfs(path):
+        if len(path) == len(l):
             res.append(''.join(path))
             return
 
-        for i, letter in enumerate(letters):
+        for letter in l:
             # skip used letters
-            if used[i]:
+            if letter in path:
                 continue
             # add letter to permutation, mark letter as used
             path.append(letter)
-            used[i] = True
-            dfs(path, used, res)
+            dfs(path)
             # remove letter from permutation, mark letter as unused
             path.pop()
-            used[i] = False
 
     res = []
-    dfs([], [False] * len(letters), res)
+    dfs([])
     return res
 
 letters = 'abc'
