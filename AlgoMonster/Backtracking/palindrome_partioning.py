@@ -1,3 +1,5 @@
+from typing import List
+
 def partition(s):
     # WRITE YOUR BRILLIANT CODE HERE
     ans = []
@@ -15,11 +17,12 @@ def partition(s):
         # Appending all the palindrome partioning to the ans list
         # start is the index of the string which is carried over to the next recursion
         if start == n:
-            ans.append(cur_path)
+            ans.append(cur_path[:])
             return
 
         for i in range(start+1, n+1):
             # Obtaining the prefix
+            # start does not increment until it reaches is_palindrome
             prefix = s[start:i]
             # Only continue if the substring is a palindrome (This is call pruning the state space branches)
             if is_palindrome(prefix):
@@ -30,5 +33,31 @@ def partition(s):
     return ans
 
 
+def partition(s: str) -> List[List[str]]:
+    # WRITE YOUR BRILLIANT CODE HERE
+    """
+    Alternative
+    """
+    res = []
+    n = len(s)
+    
+    def is_palindrome(word):
+        return word == word[::-1]
+    
+    def dfs(start, path):
+        if start == n:
+            res.append(path)
+            return
+            
+        for end in range(start+1, n+1):
+            prefix = s[start:end]
+            if is_palindrome(prefix):
+                path.append(prefix)
+                dfs(end, path[:])
+                path.pop()
+    
+    dfs(0, [])
+    return res
+
 s = 'aab'
-partition(s)
+print(partition(s))
