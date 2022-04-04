@@ -64,3 +64,35 @@ def permutations(l):
 
 letters = 'abc'
 print(permutations(letters))
+
+
+"""
+Alternative solution: without path.pop()
+"""
+
+from typing import List
+
+def permutations(l):
+    """
+    There are 2 things to note here:
+    the path is a list that keeps getting updated inside the dfs function
+    the res is a list that outputs all the permuatations
+    """
+    def dfs(path):
+        if len(path) == len(l):
+            res.append(''.join(path))
+            return
+
+        for letter in l:
+            # skip used letters
+            if letter in path:
+                continue
+            # It pops the last letter after ending the recursion
+            dfs(path + [letter])
+
+    res = []
+    dfs([])
+    return res
+
+letters = 'abc'
+print(permutations(letters))
