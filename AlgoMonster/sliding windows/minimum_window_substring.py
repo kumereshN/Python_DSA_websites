@@ -1,39 +1,53 @@
 from collections import Counter
 
 
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        """ We want to continue the end pointer until there's is a complete set of the check substring """
+def minWindow(s: str, t: str) -> str:
+    """
+    My advice for solving this problem is to:
+    Understand the intuition and what to do at a high level
+    Try to implement your own solution WITHOUT copying anyone elses
+    This is how you will learn
+    You will remember high level concepts, but never line for line code
 
-        # Define variables
-        s_count, t_count = Counter(s), Counter(t)
+    Intuition:
+    Two pointers, left and right
+    Both start from 0,0
+    Increase right pointer until valid window is found
+    Decrease left pointer until window is no longer valid
+    Add the minimum length window you've found to your results
+    Continue increasing right pointer, pretty much repeating what we did above
+    Return the minimum length of your results
+    """
 
-        l, r = 0, 0
+    # Define variables
+    s_count, t_count = Counter(s), Counter(t)
 
-        results = []
+    l, r = 0, 0
 
-        while r <= len(s)-1:
+    results = []
 
-            # Find valid window
-            s_count[s[r]] += 1
-            r += 1
-            # '&' is the bitwise operator, sums both s_count and t_count, checks if t_count exists in s_count
+    while r <= len(s)-1:
+
+        # Find valid window
+        s_count[s[r]] += 1
+        r += 1
+        # '&' is the bitwise operator, sums both s_count and t_count, checks if t_count exists in s_count
+        if s_count & t_count != t_count:
+            continue
+
+        # Minimize this window
+        while l < r:
+            s_count[s[l]] -= 1
+            l += 1
             if s_count & t_count == t_count:
                 continue
+            results.append(s[l-1:r])
+            break
 
-            # Minimize this window
-            while l < r:
-                s_count[s[l]] -= 1
-                l += 1
-                if s_count & t_count != t_count:
-                    continue
-                results.append(s[l-1:r])
-                break
-
-        # Return result
-        if not results:
-            return ""
-        return min(results, key=len)
+    # Return result
+    if not results:
+        return ""
+    return min(results, key=len)
 
 
 """ Source: https://leetcode.com/problems/minimum-window-substring/discuss/1045266/Python-or-My-advice """
