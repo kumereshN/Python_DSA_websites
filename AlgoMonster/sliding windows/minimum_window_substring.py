@@ -98,3 +98,41 @@ original = "cdbaebaecd"
 check = "abc"
 
 get_minimum_window(original, check)
+
+
+def get_minimum_window(original: str, check: str) -> str:
+    # WRITE YOUR BRILLIANT CODE HERE
+    """
+    My solution, not completed yet. Does not consider duplicates.
+    """
+    # Define variables
+    n = len(original)
+    to_check = set(check)
+    window = set()
+    l, r = 0, 0
+    
+    res = []
+    
+    while r <= n-1:                        
+        # Find valid window
+        window.add(original[r])
+        r += 1
+        check_if_contain = window.intersection(to_check)
+        if check_if_contain != to_check:
+            continue
+            
+        # Minimize the window
+        while l < r:
+            window.remove(original[l])
+            l += 1
+            check_if_contain = window.intersection(to_check)
+            if check_if_contain == to_check:
+                continue
+            res.append(original[l-1:r])
+            break
+                    
+        
+    # Return result
+    if not res:
+        return ""        
+    return min(res, key=len)
