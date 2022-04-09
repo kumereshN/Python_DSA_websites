@@ -1,56 +1,32 @@
 from collections import Counter
 
+def get_minimum_window(original: str, check: str) -> str:
+    # WRITE YOUR BRILLIANT CODE HERE
+    need, missing = Counter(check), len(check)
+    left = prev_start = prev_end = 0
+    res = []
+    for right, c in enumerate(original, 1):
+        if need[c] > 0:
+            missing -= 1
+        need[c] -= 1
+        if missing == 0:
+            # if we've found a repeating char, it'll become 'b':-1
+            # so, it'll continue to move the left pointer until we've found the repeating char again, which becomes 'b': 0``
+            # it's contracting the window
+            while left < right and need[original[left]] < 0:
+                need[original[left]] += 1
+                left += 1
+            if not prev_end or right - left <= prev_end - prev_start:
+                prev_start, prev_end = left, right
+                res.append(original[prev_start:prev_end])
 
-def minWindow(s: str, t: str) -> str:
-    """
-    My advice for solving this problem is to:
-    Understand the intuition and what to do at a high level
-    Try to implement your own solution WITHOUT copying anyone elses
-    This is how you will learn
-    You will remember high level concepts, but never line for line code
+    res = sorted(res)
+    return res[0] if res else ""
+    
+original = 'cdbaebaecd'
+check = 'abc'
 
-    Intuition:
-    Two pointers, left and right
-    Both start from 0,0
-    Increase right pointer until valid window is found
-    Decrease left pointer until window is no longer valid
-    Add the minimum length window you've found to your results
-    Continue increasing right pointer, pretty much repeating what we did above
-    Return the minimum length of your results
-    """
-
-    # Define variables
-    s_count, t_count = Counter(s), Counter(t)
-
-    l, r = 0, 0
-
-    results = []
-
-    while r <= len(s)-1:
-
-        # Find valid window
-        s_count[s[r]] += 1
-        r += 1
-        # '&' is the bitwise operator, sums both s_count and t_count, checks if t_count exists in s_count
-        if s_count & t_count != t_count:
-            continue
-
-        # Minimize this window
-        while l < r:
-            s_count[s[l]] -= 1
-            l += 1
-            if s_count & t_count == t_count:
-                continue
-            results.append(s[l-1:r])
-            break
-
-    # Return result
-    if not results:
-        return ""
-    return min(results, key=len)
-
-
-""" Source: https://leetcode.com/problems/minimum-window-substring/discuss/1045266/Python-or-My-advice """
+get_minimum_window(original, check)
 
 
 def get_minimum_window(original: str, check: str) -> str:
@@ -103,7 +79,7 @@ get_minimum_window(original, check)
 def get_minimum_window(original: str, check: str) -> str:
     # WRITE YOUR BRILLIANT CODE HERE
     """
-    My solution, not completed yet. Does not consider duplicates.
+    My solution, not completed yet. Considers duplicates.
     """
     # Define variables
     n = len(original)
