@@ -5,6 +5,7 @@ def get_minimum_window(original: str, check: str) -> str:
     need, missing = Counter(check), len(check)
     left = prev_start = prev_end = 0
     res = []
+    # Right starts from 1, left is 0, so it'll be original[left:right] that will be appended to res.
     for right, c in enumerate(original, 1):
         if need[c] > 0:
             missing -= 1
@@ -27,6 +28,10 @@ original = 'cdbaebaecd'
 check = 'abc'
 
 get_minimum_window(original, check)
+
+"""
+Source: https://leetcode.com/problems/minimum-window-substring/discuss/26804/12-lines-Python
+"""
 
 
 def get_minimum_window(original: str, check: str) -> str:
