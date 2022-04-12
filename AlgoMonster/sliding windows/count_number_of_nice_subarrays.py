@@ -4,19 +4,19 @@ from typing import List
 def numberOfSubarrays(nums, k):
     right, left = 0, 0
     ans = 0
-    odd_cnt = 0
-    ans = 0
-    cur_sub_cnt = 0
+    cur_sub_cnt = odd_cnt = 0
     for right in range(len(nums)):
-
+        # if we've found a odd number, increment the odd counter
         if nums[right] % 2 == 1:
             odd_cnt += 1
             cur_sub_cnt = 0
-
+        # increment the right side of the window until we've found odd_cnt == k
         while odd_cnt == k:
+            # Minimize the window until we've found a odd number 
             if nums[left] % 2 == 1:
                 odd_cnt -= 1
             cur_sub_cnt += 1
+            # Move to the next number after the finding the odd number
             left += 1
 
         ans += cur_sub_cnt
