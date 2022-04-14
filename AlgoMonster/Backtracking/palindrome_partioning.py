@@ -15,7 +15,7 @@ def partition(s):
         """
         # Base case: we've reached the end of the string
         # Appending all the palindrome partioning to the ans list
-        # start is the index of the string which is carried over to the next recursion
+        # end is the index of the string which is carried over to the next recursion
         if start == n:
             # making a copy of cur_path
             ans.append(cur_path[:])

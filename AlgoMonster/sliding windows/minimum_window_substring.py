@@ -9,11 +9,11 @@ def get_minimum_window(original: str, check: str) -> str:
     for right, c in enumerate(original, 1):
         if need[c] > 0:
             missing -= 1
+        # This will include characters that are not found in need, like 'd' and it becomes 'd': -1
         need[c] -= 1
         if missing == 0:
-            # if we've found a repeating char, it'll become 'b':-1
-            # so, it'll continue to move the left pointer until we've found the repeating char again, which becomes 'b': 0``
-            # it's contracting the window
+            # as we move the right pointer, if we've found a repeating char, like 'c', we do the contraction of the window
+            # so, it'll continue to move the left pointer until we've found another repeating char, like 'b', then we stop the while loop
             while left < right and need[original[left]] < 0:
                 need[original[left]] += 1
                 left += 1
