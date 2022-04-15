@@ -28,3 +28,30 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
                     right -= 1
 
     return res
+
+
+from typing import List
+
+def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
+    """
+    Doing it with recursion
+    """
+    # WRITE YOUR BRILLIANT CODE HERE
+    n = len(nums)
+    nums.sort()
+    res = []
+    def dfs(start, path):
+        if len(path) == 3 and sum(path) == 0 and path not in res:
+            res.append(path)
+            return
+        elif len(path) == 3:
+            return
+        
+        for i in range(start, n):
+            dfs(i+1, path + [nums[i]])
+    
+    dfs(0, [])
+    return res
+    
+nums = [1, -1, 2, -2, 3, -3, 4, -4]
+print(triplets_with_sum_0(nums))
