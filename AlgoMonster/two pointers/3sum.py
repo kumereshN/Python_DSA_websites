@@ -34,24 +34,28 @@ from typing import List
 
 def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     """
-    Doing it with recursion
+    Doing it with recursion, backtracking
     """
     # WRITE YOUR BRILLIANT CODE HERE
     n = len(nums)
+    required_numbers = 6
+    target_sum = 1
     nums.sort()
     res = []
     def dfs(start, path):
-        if len(path) == 3 and sum(path) == 0 and path not in res:
+        # Base Case
+        if len(path) == required_numbers and sum(path) == target_sum and path not in res:
             res.append(path)
             return
-        elif len(path) == 3:
+        elif len(path) == required_numbers:
             return
-        
+
         for i in range(start, n):
             dfs(i+1, path + [nums[i]])
     
     dfs(0, [])
     return res
     
-nums = [1, -1, 2, -2, 3, -3, 4, -4]
+# nums = [1, -1, 2, -2, 3, -3, 4, -4]
+nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
 print(triplets_with_sum_0(nums))
