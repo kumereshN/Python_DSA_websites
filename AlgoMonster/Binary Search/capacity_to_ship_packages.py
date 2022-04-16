@@ -1,7 +1,33 @@
 from typing import List
 
-def feasible(weights: List[int], max_weight: int, d: int) -> int:
-    req_days = 1
+from typing import List
+
+def min_max_weight(weights: List[int], d: int) -> int:
+    # WRITE YOUR BRILLIANT CODE HERE
+    """
+    Optimum solution
+    source: https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC%2B%2BPython-Binary-Search
+    """
+    left, right = max(weights), sum(weights)
+    while left < right:
+        mid, need, cur = (left + right) // 2, 1, 0
+        for w in weights:
+            if cur + w > mid:
+                need += 1
+                cur = 0
+            cur += w
+        if need > d:
+            left = mid + 1
+        else:
+            right = mid
+    return left
+
+def feasible(weights: List[int], max_weight: int, req_days: int) -> int:
+    """
+    Algomonster solution
+    """
+    total_days = 1
+    # max_weight is minimum capacity we want
     capacity = max_weight
     i = 0
     n = len(weights)
@@ -10,11 +36,11 @@ def feasible(weights: List[int], max_weight: int, d: int) -> int:
             capacity -= weights[i]
             i += 1
         else:
-            # If we've reached the max capacity, increment req_days by 1
+            # If we've reached the max capacity, increment total_days by 1
             # Reset the capacity
-            req_days += 1
+            total_days += 1
             capacity = max_weight
-    return req_days <= d
+    return total_days <= req_days
 
 def min_max_weight(weights: List[int], d: int) -> bool:
     min_ptr = max(weights)

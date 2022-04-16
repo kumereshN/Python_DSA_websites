@@ -38,8 +38,8 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     """
     # WRITE YOUR BRILLIANT CODE HERE
     n = len(nums)
-    required_numbers = 6
-    target_sum = 1
+    required_numbers = 5
+    target_sum = 0
     nums.sort()
     res = []
     def dfs(start, path):
@@ -57,5 +57,7 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     return res
     
 # nums = [1, -1, 2, -2, 3, -3, 4, -4]
-nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
+# nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
+nums = [-4, 2, 3, 7, 4, 5, -4, 6, 7, 3, -4, 4, 6, 7, -4, 9]
+
 print(triplets_with_sum_0(nums))
