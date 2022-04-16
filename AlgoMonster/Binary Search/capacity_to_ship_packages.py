@@ -2,21 +2,21 @@ from typing import List
 
 from typing import List
 
-def min_max_weight(weights: List[int], d: int) -> int:
+def min_max_weight(weights: List[int], required_days: int) -> int:
     # WRITE YOUR BRILLIANT CODE HERE
     """
     Optimum solution
-    source: https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC%2B%2BPython-Binary-Search
+    source: https://leetcode.com/problems/capacity-to-ship-packages-within-required_days-days/discuss/256729/JavaC%2B%2BPython-Binary-Search
     """
     left, right = max(weights), sum(weights)
     while left < right:
-        mid, need, cur = (left + right) // 2, 1, 0
+        mid, total_days, cur_sum_weights = (left + right) // 2, 1, 0
         for w in weights:
-            if cur + w > mid:
-                need += 1
-                cur = 0
-            cur += w
-        if need > d:
+            if cur_sum_weights + w > mid:
+                total_days += 1
+                cur_sum_weights = 0
+            cur_sum_weights += w
+        if total_days > required_days:
             left = mid + 1
         else:
             right = mid
