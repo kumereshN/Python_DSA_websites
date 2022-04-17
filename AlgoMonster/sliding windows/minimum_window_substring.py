@@ -21,7 +21,7 @@ def get_minimum_window(original: str, check: str) -> str:
                 prev_start, prev_end = left, right
                 res.append(original[prev_start:prev_end])
 
-    res = sorted(res)
+    res.sort()
     return res[0] if res else ""
     
 original = 'cdbaebaecd'

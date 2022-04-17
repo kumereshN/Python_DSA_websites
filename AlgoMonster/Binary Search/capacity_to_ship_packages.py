@@ -16,6 +16,9 @@ def min_max_weight(weights: List[int], required_days: int) -> int:
                 total_days += 1
                 cur_sum_weights = 0
             cur_sum_weights += w
+        # total_days decreases as we move towards the right
+        # left being completing the delivery in 10 days
+        # right being completing the delivery in 1 day
         if total_days > required_days:
             left = mid + 1
         else:
