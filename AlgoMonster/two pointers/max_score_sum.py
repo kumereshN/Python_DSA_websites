@@ -11,7 +11,7 @@ def maxSum(arr1, arr2):
             curNums2Sum += arr2[j]
             j += 1
         else:
-            # Both pointers are pointing to the "Teleporter number" (Same number).
+            # Both pointers are pointing to the "Teleporter number" (Same number). arr1[i] == arr2[j]
             # Find the curMaxSum and add the "Teleporter number" (Can be either arr1[i] or arr2[j])
             # Set the curNums1Sum and curNums1Sum to be curMaxSum
             curNums1Sum = curNums2Sum = max(curNums1Sum, curNums2Sum) + arr1[i]
@@ -25,4 +25,5 @@ def maxSum(arr1, arr2):
 
 arr1 = [2, 4, 5, 8, 10]
 arr2 = [4, 6, 8, 9]
-maxSum(arr1, arr2)
+
+print(maxSum(arr1, arr2))
