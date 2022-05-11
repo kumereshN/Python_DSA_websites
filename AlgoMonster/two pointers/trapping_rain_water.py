@@ -35,3 +35,31 @@ def trapping_rain_water(elevations):
 
 elevations = [3, 2, 1, 2, 2, 3, 2]
 trapping_rain_water(elevations)
+
+
+from typing import List
+
+def trapping_rain_water(elevations: List[int]) -> int:
+    # WRITE YOUR BRILLIANT CODE HERE
+    """ My solution """
+    left, right = 0, len(elevations) - 1
+    trapped = 0
+    boundary = 0
+    
+    while left < right:
+        
+        left_elevation = elevations[left]
+        right_elevation = elevations[right]
+        
+        cur_boundary = max(left_elevation, right_elevation)
+        boundary = max(cur_boundary, boundary)
+        
+        if left_elevation <= boundary:
+            trapped += boundary - left_elevation
+            left += 1
+        
+        if right_elevation <= boundary:
+            trapped += boundary - right_elevation
+            right -= 1 
+    
+    return trapped

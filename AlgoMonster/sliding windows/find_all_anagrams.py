@@ -18,3 +18,21 @@ def find_all_anagrams(original: str, check: str):
         left += 1
         right += 1
     return res
+
+
+from typing import List
+
+def find_all_anagrams(original: str, check: str) -> List[int]:
+    # WRITE YOUR BRILLIANT CODE HERE
+    """ My solution. This works """
+    left, right = 0, len(check)
+    n = len(original)
+    res = []
+    
+    while right <= n:
+        if right - left == len(check):
+            if sorted(original[left:right]) == sorted(check):
+                res.append(left)
+        left += 1        
+        right += 1
+    return res
