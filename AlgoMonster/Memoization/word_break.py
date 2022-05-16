@@ -52,6 +52,7 @@ def word_break(s: str, words: List[str]) -> bool:
             prefix = s[i:]
             if prefix.startswith(word):
                 if dfs(i + len(word)):
+                    # If all the words in the word list match with the String, end the statement with True
                     return True
         # working backwards, prefix ends with 'b', then 'ab', then 'aab' which all does not match with the words list
         # hence, returning False 
