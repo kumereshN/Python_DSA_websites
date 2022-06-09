@@ -30,8 +30,6 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     return res
 
 
-from typing import List
-
 def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     """
     Doing it with recursion, backtracking
@@ -42,6 +40,7 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     target_sum = 0
     nums.sort()
     res = []
+
     def dfs(start, path):
         # Base Case
         if len(path) == required_numbers and sum(path) == target_sum and path not in res:
@@ -51,11 +50,12 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
             return
 
         for i in range(start, n):
-            dfs(i+1, path + [nums[i]])
-    
+            dfs(i + 1, path + [nums[i]])
+
     dfs(0, [])
     return res
-    
+
+
 # nums = [1, -1, 2, -2, 3, -3, 4, -4]
 # nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
 nums = [-4, 2, 3, 7, 4, 5, -4, 6, 7, 3, -4, 4, 6, 7, -4, 9]
