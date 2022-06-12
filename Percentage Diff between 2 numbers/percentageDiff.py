@@ -4,7 +4,10 @@ def percentage_diff(number_one, number_two):
     return round(difference_in_percentage,2) * 100
 
 
-first_number = int(input("Provide your first number:\n"))
-second_number = int(input("\nProvide your second number:\n"))
+first_number = float(input("Provide your first number:\n"))
+second_number = float(input("\nProvide your second number:\n"))
 
-print("\nThe percentage difference between the two numbers is: " + str(percentage_diff(first_number, second_number)) + "%")
+if first_number < second_number:
+    print("\nThe percentage difference between the two numbers is: " + str(percentage_diff(first_number, second_number)) + "%")
+else:
+    print("\nThe percentage difference between the two numbers is: -" + str(percentage_diff(first_number, second_number)) + "%")
