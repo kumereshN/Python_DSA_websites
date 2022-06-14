@@ -1,7 +1,7 @@
 def percentage_diff(number_one, number_two):
     diff = abs(number_one - number_two)
-    difference_in_percentage = diff / number_one
-    return round(difference_in_percentage,2) * 100
+    difference_in_percentage = (diff / number_one) * 100
+    return round(difference_in_percentage,2)
 
 
 first_number = float(input("Provide your first number:\n"))
