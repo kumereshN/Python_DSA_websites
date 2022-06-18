@@ -39,4 +39,4 @@ def map_gate_distances(dungeon_map: List[List[int]]) -> List[List[int]]:
     bfs(queue)
 
 dungeon_map = [[0,-1], [2147483647,2147483647]]
-map_gate_distances(dungeon_map)
+print(map_gate_distances(dungeon_map))
