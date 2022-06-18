@@ -6,7 +6,7 @@ def word_ladder(begin: str, end: str, word_list: List[str]) -> int:
     # WRITE YOUR BRILLIANT CODE HERE
     words = set(word_list) # make a set because existence query is O(1) vs O(N) for list
     q = deque([begin])
-    steps = -1
+    steps = -1 # -1 to not count 'cold' which is the first word
 
     def get_next_word(word):
         res = []
