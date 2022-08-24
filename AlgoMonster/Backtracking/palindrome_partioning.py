@@ -20,7 +20,8 @@ def partition(s):
             # making a copy of cur_path
             ans.append(cur_path[:])
             return
-
+        
+        # n+1 as s[last_idx : last_idx + 1], we want to get the last char in s
         for end in range(start+1, n+1):
             # Obtaining the prefix
             prefix = s[start:end]
