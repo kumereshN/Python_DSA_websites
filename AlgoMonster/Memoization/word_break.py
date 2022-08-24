@@ -40,6 +40,23 @@ from typing import List
 
 def word_break(s: str, words: List[str]) -> bool:
     # WRITE YOUR BRILLIANT CODE HERE
+    """
+    It iterates each word in the words list and checks if the string s starts with the word.
+    If none of the words starts with the string, then return False.
+    If True, then moves to the next slice of string (prefix) and iterate again the words list to check if the prefix starts with the word in the words list.
+    If all of it is True, then return True.
+    """
+
+    """ 
+        // If we are able to match words all the way up to i, but then fail to find
+        // any solutions from there with our words, then we will *always* fail to find
+        // a match if we arrive at this length again (because all words can be reused
+        // as often as you want, and we've already tried everything from this point).
+        //
+        // If we back up to a previous position, it's possible we will find a match that
+        // places us at a new length i, from which one of our words might be able to match
+        // to the end.
+    """
     memo = {}
     
     def dfs(i):
@@ -55,7 +72,7 @@ def word_break(s: str, words: List[str]) -> bool:
                     # If all the words in the word list match with the String, end the statement with True
                     return True
         # working backwards, prefix ends with 'b', then 'ab', then 'aab' which all does not match with the words list
-        # hence, returning False 
+        # hence, returning False
         memo[i] = False
         return memo[i]
     return dfs(0)
@@ -64,4 +81,4 @@ def word_break(s: str, words: List[str]) -> bool:
 s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab'
 words = ['a', 'aa','aaa','aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaa']
 
-word_break(s, words)
+print(word_break(s, words))

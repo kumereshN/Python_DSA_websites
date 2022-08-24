@@ -30,14 +30,14 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
     return res
 
 
-def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
+def dfs_triplets_with_sum(nums: List[int]) -> List[List[int]]:
     """
     Doing it with recursion, backtracking
     """
     # WRITE YOUR BRILLIANT CODE HERE
     n = len(nums)
     required_numbers = 5
-    target_sum = 0
+    target_sum = 3
     nums.sort()
     res = []
 
@@ -60,4 +60,4 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
 # nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
 nums = [-4, 2, 3, 7, 4, 5, -4, 6, 7, 3, -4, 4, 6, 7, -4, 9]
 
-print(triplets_with_sum_0(nums))
+print(dfs_triplets_with_sum(nums))
