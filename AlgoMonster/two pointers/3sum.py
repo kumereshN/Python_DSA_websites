@@ -22,6 +22,8 @@ def triplets_with_sum_0(nums: List[int]) -> List[List[int]]:
                     res.append([x, y, z])
                     left += 1
                     right -= 1
+                    while left < right and nums[left] == nums[left-1]:
+                        left += 1
                 elif total_sum < 0:
                     left += 1
                 else:
@@ -36,8 +38,8 @@ def dfs_triplets_with_sum(nums: List[int]) -> List[List[int]]:
     """
     # WRITE YOUR BRILLIANT CODE HERE
     n = len(nums)
-    required_numbers = 5
-    target_sum = 3
+    required_numbers = 3
+    target_sum = 0
     nums.sort()
     res = []
 
@@ -57,7 +59,8 @@ def dfs_triplets_with_sum(nums: List[int]) -> List[List[int]]:
 
 
 # nums = [1, -1, 2, -2, 3, -3, 4, -4]
+nums = [-1,0,1,2,-1,-4]
 # nums =  [-4, 0, 4, 0, 3, 0, -1, -2, 0, 2, -2]
-nums = [-4, 2, 3, 7, 4, 5, -4, 6, 7, 3, -4, 4, 6, 7, -4, 9]
+# nums = [-4, 2, 3, 7, 4, 5, -4, 6, 7, 3, -4, 4, 6, 7, -4, 9]
 
 print(dfs_triplets_with_sum(nums))
