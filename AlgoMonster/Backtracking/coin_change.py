@@ -1,4 +1,4 @@
-def dfs(coins, start, remaining, path, res):
+def dfs(coins, start, remaining, path):
     n = len(coins)
     
     if remaining == 0:
@@ -9,12 +9,11 @@ def dfs(coins, start, remaining, path, res):
         coin = coins[i]
         if remaining - coin < 0:
             continue
-        dfs(coins, i, remaining - coin, path + [coin], res)
+        dfs(coins, i, remaining - coin, path + [coin])
     
 coins = [1,2,5]
 amount = 11
-memo = dict()
 res = []
 
-dfs(coins, 0, amount, [], res)
-print(res)
+dfs(coins, 0, amount, [])
+print(len(sorted(res, key=len)[0]))
