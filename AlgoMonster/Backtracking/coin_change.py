@@ -2,7 +2,7 @@ def dfs(coins, start, remaining, path):
     n = len(coins)
     
     if remaining == 0:
-        res.append(path[:])
+        res.append(len(path[:]))
         return
     
     for i in range(start, n):
@@ -16,4 +16,4 @@ amount = 11
 res = []
 
 dfs(coins, 0, amount, [])
-print(len(sorted(res, key=len)[0]))
+print(min(res))
