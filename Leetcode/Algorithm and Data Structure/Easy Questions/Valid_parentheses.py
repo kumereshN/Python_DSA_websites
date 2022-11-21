@@ -5,9 +5,8 @@ def isValid(s: str) -> bool:
     for char in s:
         if char in hashmap:
             stack.append(char)
-        else:
-            if hashmap[stack.pop()] != char:
-                return False
+        elif hashmap[stack.pop()] != char:
+            return False
     return stack == [0]
 
 s = "()"
