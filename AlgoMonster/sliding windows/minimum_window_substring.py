@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, deque
 
 def get_minimum_window(original: str, check: str) -> str:
     # WRITE YOUR BRILLIANT CODE HERE
@@ -117,3 +117,25 @@ def get_minimum_window(original: str, check: str) -> str:
     if not res:
         return ""        
     return min(res, key=len)
+
+def get_minimum_window(s: str, p: str) -> str:
+    def subset(Cw: Counter, Cp: Counter):
+        return all([Cw[x] >= Cp[x] for x in Cp.elements()])
+
+    nw, min_len, min_str = 0, float('inf'), ""
+    Cw, Cp = Counter(), Counter(p)
+
+    for i, c in enumerate(original):
+        
+        Cw[c] += 1
+        nw += 1
+        
+        while Cw[s[i - nw + 1]] > Cp[s[i - nw + 1]]:
+            Cw[s[i - nw + 1]] -= 1
+            nw -= 1
+            
+        if subset(Cw, Cp) and (nw < min_len or (nw == min_len and s[i - nw + 1:i + 1] < min_str)):
+            min_len = nw
+            min_str = s[i - nw + 1:i + 1]
+
+    return min_str
