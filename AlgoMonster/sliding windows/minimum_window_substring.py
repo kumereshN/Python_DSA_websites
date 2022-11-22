@@ -17,7 +17,7 @@ def get_minimum_window(original: str, check: str) -> str:
             while left < right and need[original[left]] < 0:
                 need[original[left]] += 1
                 left += 1
-            if not prev_end or right - left <= prev_end - prev_start:
+            if not prev_start or right - left <= prev_end - prev_start:
                 prev_start, prev_end = left, right
                 res.append(original[prev_start:prev_end])
 
