@@ -1,5 +1,3 @@
-import re
-import math
 from decimal import *
 def check_split(item_total, tax_rate, tip, people):
     """Calculate check value and evenly split.
@@ -12,33 +10,27 @@ def check_split(item_total, tax_rate, tip, people):
        :return: tuple of (grand_total: str, splits: list)
                 e.g. ('$10.00', [3.34, 3.33, 3.33])
     """
-    getcontext().prec = 28
-    getcontext().rounding = ROUND_DOWN
 
-    evenly_split_lst = []
-
-    def evenly_split(remaining, n_people, evenly_split_per_person):
-        if n_people == 1:
-            evenly_split_lst.append(remaining)
-            return
-        evenly_split_lst.append(evenly_split_per_person)
-        remaining = remaining - evenly_split_per_person
-        evenly_split(remaining, n_people-1, evenly_split_per_person)
-
-
-    item_total = float(item_total.split('$')[1])
-    tax_rate = 1.00 + (float(tax_rate.split('%')[0]) / 100)
-    tip = 1.00 + (float(tip.split('%')[0]) / 100)
+    CENTS = Decimal('.01')
     
-    grand_total = Decimal(item_total * tax_rate * tip).quantize(Decimal('.001'))
-    acutal_split_per_person = Decimal(grand_total / people).quantize(Decimal('.001'))
+    sub_total = Decimal(item_total[1:])
+    add_taxes = Decimal(tax_rate[:-1]) / 100
+    add_tip = Decimal(tip[:-1]) / 100
 
-    evenly_split(grand_total, people, acutal_split_per_person)
+    tax = (sub_total * add_taxes).quantize(CENTS)
+    tip = ((sub_total + tax) * add_tip).quantize(CENTS)
+    gt = (sub_total + tax + tip).quantize(CENTS)
 
-    
-    total_sum = f'${str(sum(evenly_split_lst))}'
-    
-    return (total_sum, evenly_split_lst)
+    owned_each = (gt / people).quantize(CENTS, rounding=ROUND_DOWN)
+    splits = [owned_each] * people
+    overage = (gt - (owned_each * people))
+
+    if overage:
+        for i in range(int(overage * 100)):
+            splits[i] += CENTS
+
+    return (f"${gt}", splits)
+
     
 
 c1 = ('$8.68', '4.75%', '10%', 3)
