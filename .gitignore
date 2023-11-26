@@ -1,3 +1,8 @@
 *.zip
 *.log
 *.pyc
+*.xlsx
+*.json
+*.csv
+*.ipynb
+*.txt
