@@ -21,10 +21,11 @@ def create_paw_deck(n=8):
     
     deck = list()
     required_letters = ascii_uppercase[:n]
-    total_actions = [2 for _ in range(4)]
-    actions_counter = dict(zip(ACTIONS, total_actions))
+    ACTIONS_LST = ACTIONS + ACTIONS
+    random.shuffle(ACTIONS_LST)
 
     random_no_seq = generate_random_numbers(8, n * 4)
+    action_and_index = dict(zip(random_no_seq, ACTIONS_LST))
 
     for letter in required_letters:
         idx_of_random_no = random_no_seq.pop()
@@ -32,7 +33,6 @@ def create_paw_deck(n=8):
             if idx_of_random_no % 4 == num or idx_of_random_no % 4 == 0:
                 random_action_card = random.choice(ACTIONS)
                 card = PawCard(letter + str(num), random_action_card)
-                idx_of_random_no = random_no_seq.pop()
             else:
                 card = PawCard(letter + str(num), None)
             deck.append(card)
