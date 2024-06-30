@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Tuple, Optional, List
 import os
 
-DATA_FILE_NAME = "test4.json"
+DATA_FILE_NAME = "test1.json"
 TMP = Path(os.getenv("TMP", "/tmp"))
 DATA_PATH = TMP / DATA_FILE_NAME
 MY_TZ = gettz("America/New_York")
@@ -38,9 +38,11 @@ def calculate_streaks(date_lst: List[datetime]) -> List[Tuple[datetime, datetime
             if not first_day_streak:
                 first_day_streak = prev_date
         else:
-            # Append the first and last day of the streak
-            if cur_streak > 0:
+            # Get the best streak
+            if cur_streak >= max_streak:
                 last_day_streak = current_date
+                max_streak = cur_streak
+                # Append the first and last day of the streak
                 res.append((first_day_streak, last_day_streak))
                 first_day_streak, last_day_streak = None, None
             # Reset cur_streak
@@ -78,9 +80,12 @@ def longest_streak(
         streaks_lst = calculate_streaks(get_dates)
         return streaks_lst.pop() if streaks_lst else None
 
-# longest_streak(my_tz=UTC)
+# print(longest_streak(my_tz=MY_TZ))
 
+"""
 if __name__ == "__main__":
     streak = longest_streak(my_tz=MY_TZ)
     print(f"My longest streak went from {streak[0]} through {streak[1]}")
     print(f"The streak lasted {(streak[1]-streak[0]).days + 1} days")
+"""
+
